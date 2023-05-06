@@ -27,6 +27,8 @@ def generate_flashcards(number_of_cards, subject, grade):
         temperature=0.7,
     )
     
-    print(conversion(response.choices[0].text,number_of_cards))
+    cards = conversion(response.choices[0].text,number_of_cards)
+    
+    return cards
     
 generate_flashcards(10, "imaginary", "grade 11")
