@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    
+    <style>
+        html {
+  background-color: #202124
+}
+
+main{
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	text-align:center;
+}
+
+
+ h3{
+  padding-top: 25px;
+  letter-spacing: normal;
+  font-family: 'Monaco', monospace;
+	font-style: normal;
+	font-size: 60px;
+	color: #8390FA;
+}
+p{
+	font-family: 'Monaco', monospace;
+	font-size:1.5rem;
+  color: #7A9E7E;
+}    
+    </style>
+
+
+<script>
+const flashcards = document.getElementsByClassName("flashcards")[0];
+const createCard = document.getElementsByClassName("create-card")[0];
+const question = document.getElementById("question");
+const answer = document.getElementById("answer");
+let contentArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+contentArray.forEach(divMaker);
+
+function divMaker(text){
+  var div = document.createElement("div");
+  var h2_question = document.createElement('h2');
+  var h2_answer = document.createElement('h2');
+
+  div.className = 'flashcard';
+
+  h2_question.setAttribute("style", "border-top:1px solid red; padding: 15px; margin-top:30px");
+  h2_question.innerHTML = text.my_question;
+
+  h2_answer.setAttribute("style", "text-align:center; display:none; color:red");
+  h2_answer.innerHTML = text.my_answer;
+
+  div.appendChild(h2_question);
+  div.appendChild(h2_answer);
+
+  div.addEventListener("click", function(){
+    if(h2_answer.style.display == "none")
+      h2_answer.style.display = "block";
+    else
+      h2_answer.style.display = "none";
+  })
+
+  flashcards.appendChild(div);
+}
+
+function addFlashcard(){
+  var flashcard_info = {
+    'my_question' : question.value,
+    'my_answer'  : answer.value
+  }
+
+  contentArray.push(flashcard_info);
+  localStorage.setItem('items', JSON.stringify(contentArray));
+  divMaker(contentArray[contentArray.length - 1]);
+  question.value = '';
+  answer.value = '';
+}
+
+function delFlashcards(){
+  localStorage.clear();
+  flashcards.innerHTML = '';
+  contentArray = [];
+}
+
+function showCreateCardBox(){
+  createCard.style.display = "block";
+}
+
+function hideCreateCardBox(){
+  createCard.style.display = "none";
+}
+</script>
+
+
+
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
+      <title>AI Flashcard Maker</title>
+      <link href="style.css" rel="stylesheet" type="text/css" />
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+<body>	
+	<main>
+		  <h3>AI Flashcard Maker</h3>
+       <p>Studying!!</p>
+	</main>
+</body>
+</html>
+
+
+
+<!--
+    FLASHCARDS
+    -->
+<div id="Flash Cards"> 
+        <div>
+          <button onclick="showCreateCardBox()">New Card</button>
+          <button onclick="delFlashcards()">Del Cards</button>
+        </div>
+     <div class="container">
+    <div class="create-card">
+      <h2 Create Flashcard</h2>
+
+      <label for="question">Question</label>
+      <textarea id="question"></textarea>
+      <label for="answer">Answer</label>
+      <textarea id="answer"></textarea>
+      <div>
+        <button onclick="addFlashcard()">Save</button> 
+        <button onclick="hideCreateCardBox()">Close</button>
+      </div>
+    </div>
+    <div class="flashcards"></div>
+  </div>
