@@ -4,239 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <script src="{{url_for('static', filename='script.js')}}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
   <title>AI Flashcard Maker</title>
-  <!------------------------------------------------------
-    ----------------------JS--------------------------------
-    ------------------------------------------------------->
-  <script>
-    const flashcards = document.getElementsByClassName("flashcards")[0];
-    const createCard = document.getElementsByClassName("create-card")[0];
-    const grade = document.getElementById("grade");
-    const topic = document.getElementById("topic");
-    const NumofCards = document.getElementById("NumofCards");
-    let contentArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-
-    contentArray.forEach(divMaker);
-
-    function divMaker(text) {
-      var div = document.createElement("div");
-      var h2_grade = document.createElement('h2');
-      var h2_topic = document.createElement('h2');
-      var h2_NumofCards = document.createElement('h2');
-
-      div.className = 'flashcard';
-
-      h2_grade.setAttribute("style", "border-top:1px solid red; padding: 15px; margin-top:30px");
-      h2_grade.innerHTML = text.my_grade;
-
-      h2_topic.setAttribute("style", "text-align:center; display:none; color:red");
-      h2_topic.innerHTML = text.my_topic;
-
-      h2_NumofCards.setAttribute("style", "text-align:center; display:none; color:red");
-      h2_NumofCards.innerHTML = text.my_NumofCards;
-
-      div.appendChild(h2_grade);
-      div.appendChild(h2_topic);
-      div.appendChild(h2_NumofCards);
-
-      div.addEventListener("click", function () {
-        if (h2_topic.style.display == "none")
-          h2_topic.style.display = "block";
-        else
-          h2_topic.style.display = "none";
-      })
-
-      flashcards.appendChild(div);
-    }
-
-    function addFlashcard() {
-      var flashcard_info = {
-        'my_grade': grade.value,
-        'my_topic': topic.value,
-        'NumofCards': NumofCards.value
-      }
-
-      contentArray.push(flashcard_info);
-      localStorage.setItem('items', JSON.stringify(contentArray));
-      divMaker(contentArray[contentArray.length - 1]);
-      grade.value = '';
-      topic.value = '';
-      NumofCards.value = '';
-    }
-
-    function delFlashcards() {
-      localStorage.clear();
-      flashcards.innerHTML = '';
-      contentArray = [];
-    }
-
-    function showCreateCardBox() {
-      createCard.style.display = "block";
-    }
-  </script>
-  <!--------------------------------------------------------------------------
-----------------------------------------------------------------------------
---------------------------------------------------------------------------->
-  <!------------------------------------------------------
-    ----------------------CSS--------------------------------
-    ------------------------------------------------------->
-  <style>
-html {
-  background-color: #202124
-}
-
-main{
-	width: 100%;
-	height: 100%;
-	align-items: center;
-	text-align:center;
-}
-
-
- h3{
-  padding-top: 25px;
-  letter-spacing: normal;
-  font-family: 'Monaco', monospace;
-	font-style: normal;
-	font-size: 60px;
-	color: #8390FA;
-}
-p{
-	font-family: 'Monaco', monospace;
-	font-size:1.5rem;
-  color: #7A9E7E;
-}
-
-    
-/*---------------------------------------
-    flashcards
------------------------------------------*/
-button{
-  padding: 8px;
-  outline: none;
-  cursor: pointer;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  background: whitesmoke;
-}
-
-button:hover{
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.container{
-  width: 95%;
-  margin: auto;
-  font-family: 'Nunito', sans-serif;
-  font-size: 1rem;
-}
-
-.nav{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: auto;
-	align-items: center;
-  justify-content: center;
-	text-align:center;
-  padding: 20px 0;
-  font-family: 'Nunito', sans-serif;
-  font-size: 1rem;
-}
-
-.nav button{
-  font-family: inherit;
-  color: #819891;
-  background-color: #D8D0CD;
-  font-family: 'Nunito', sans-serif;
-  font-size: 1rem;
-}
-
-.create-card{
-  width: 380px;
-  margin:auto;
-  padding: 20px;
-  margin-top: 10px;
-  border-radius: 5px;
-  font-family: 'Nunito', sans-serif;
-  color: #D8D0CD;
-  font-size: 1rem;
-  background: whitesmoke;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
-}
-
-.create-card textarea{
-  width: 100%;
-  border-radius: 5px;
-  font-family: inherit;
-  border: 1px solid lightgray;
-}
-
-.create-card button{
-  width: fit-content;
-}
-
-.flashcards{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-  margin: auto;
-  margin-top: 10px;
-  padding: 0px 10px;
-}
-
-.flashcard{
-  width: 370px;
-  height: 200px;
-  word-wrap: break-word;
-  margin: 10px; 
-  background:#fff;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
-}
-
-.flashcard h2{
-  font-size: 1rem;
-}
-
-@media(max-width:768px){
-  .flashcard{
-    margin: auto;
-  }
-
-  .flashcard{
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-}
-
-@media(max-width:480px){
-  .nav{
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .create-card{
-    width: 100%;
-  }
-
-  .flashcard{
-    width: 100%;
-  }
-
-} 
-  </style>
-  <!--------------------------------------------------------------------------
-----------------------------------------------------------------------------
---------------------------------------------------------------------------->
-</head>
+  </head>
 
 <body>
   <main>
     <h3>AI Flashcard Maker</h3>
     <p>Studying!!</p>
-
       <div id="Flash Cards"> 
           <div class="container">
       <div class="nav">
@@ -251,11 +27,11 @@ button:hover{
       <h2>Create Flashcard</h2>
 
       <label for="grade">Grade</label>
-      <textarea id="grade"></textarea>
+      <input type="text" id="grade"></input>
       <label for="topic">Topic</label>
-      <textarea id="topic"></textarea>
+      <input type="text" id="topic"></input>
       <label for="NumofCards">Number of Cards</label>
-      <textarea id="NumofCards"></textarea>
+      <input type="text" id="NumofCards"></input>
       <div>
         <button onclick="addFlashcard()">Generate</button> 
       </div>
