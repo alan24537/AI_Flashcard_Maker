@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 # from flashcard_maker import generate_flashcards
 import re
 import random
@@ -37,7 +37,7 @@ def ajax_example():
     grade = request.form['grade']
     topic = request.form['topic']
     NumofCards = request.form['NumofCards']
-    return jsonify({'index.html', display_word=display_word, display_url=display_url, 'message': grade + topic + NumofCards})
+    return jsonify({'message': grade + topic + NumofCards})
 
 if 'app' == '__main__':
     app.run()
