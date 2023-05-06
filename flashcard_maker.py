@@ -8,8 +8,8 @@ def generate_flashcards(number_of_cards, subject, grade):
     It should have one empty line between each pair of question and answer
     """
 
-    response = openai.ChatCompletion.create(
-        engine="gpt-3.5-turbo",
+    response = openai.Completion.create(
+        engine="text-davinci-003",
         prompt=prompt,
         max_tokens=600,
         n=1,
