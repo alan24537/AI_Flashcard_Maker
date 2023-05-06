@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
+      <title>AI Flashcard Maker</title>
+      <link href="style.css" rel="stylesheet" type="text/css" />
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  </head>
+<body>	
+	<main>
+		  <h3>AI Flashcard Maker</h3>
+       <p>Studying!!</p>
+      <py-script>
+import subprocess
+
+# Define the package you want to install
+package = 'openai'
+
+# Run the pip install command using subprocess
+subprocess.call(['pip', 'install', package])
+
+import openai
+import os
+
+openai.api_key  = ('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')
+def get_completion(prompt, model="gpt-3.5-turbo"):
+    messages = [{"role": "user", "content": prompt}]
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=0, # this is the degree of randomness of the model's output
+    )
+    return response.choices[0].message["content"]
+      </py-script>
+	</main>
+</body>
+</html>
