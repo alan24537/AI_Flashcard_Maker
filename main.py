@@ -26,25 +26,18 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
 
 
 #Set up website with index.html
-app = Flask('app')
+app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
     return render_template('index.html')
 
-#When the button is clicked on html, execute the function
-@app.route('/submit', methods = ['POST'])
-def sumbit():
-  #Saves the array result of get_completion() to return_results. This allows both variables to be taken.
-  return_results = get_completion()
-
-  #Sets both values in the array to variables
-  display_word = return_results[0]
-  display_url = return_results[1]
-
-  return render_template('index.html', display_word=display_word, display_url=display_url)
-  
-
+@app.route('/ajax_example', methods=['POST'])
+def ajax_example():
+    grade = request.form['grade']
+    topic = request.form['topic']
+    NumofCards = request.form['NumofCards']
+    return jsonify({'index.html', display_word=display_word, display_url=display_url, 'message': grade + topic + NumofCards})
 
 if 'app' == '__main__':
     app.run()
