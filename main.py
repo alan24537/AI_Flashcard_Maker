@@ -14,15 +14,6 @@ import random
 import openai
 import os
 openai.api_key  = ('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')
-def get_completion(prompt, model="gpt-3.5-turbo"):
-    messages = [{"role": "user", "content": prompt}]
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=0, # this is the degree of randomness of the model's output
-    )
-    return response.choices[0].message["content"]
-
 
 
 #Set up website with index.html
@@ -33,11 +24,17 @@ def hello_world():
     return render_template('index.html')
 
 @app.route('/ajax_example', methods=['POST'])
-def ajax_example():
+def get_completion(prompt, model="gpt-3.5-turbo"):
     grade = request.form['grade']
     topic = request.form['topic']
     NumofCards = request.form['NumofCards']
-    return jsonify({'message': grade + topic + NumofCards})
+    messages = [{"role": "user", "content": prompt}]
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=0, # this is the degree of randomness of the model's output
+    )
+    return response.choices[0].message["content"]
 
 if 'app' == '__main__':
     app.run()
