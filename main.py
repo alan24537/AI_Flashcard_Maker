@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, jsonify
-# from flashcard_maker import generate_flashcards
+from flashcard_maker import generate_flashcards
 import re
 import random
 
@@ -24,17 +24,12 @@ def hello_world():
     return render_template('index.html')
 
 @app.route('/ajax_example', methods=['POST'])
-def get_completion(prompt, model="gpt-3.5-turbo"):
+def addFlashcard():
     grade = request.form['grade']
     topic = request.form['topic']
     NumofCards = request.form['NumofCards']
-    messages = [{"role": "user", "content": prompt}]
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=0, # this is the degree of randomness of the model's output
-    )
-    return response.choices[0].message["content"]
+    
+    return generate_flashcards(NumofCards, topic, grade)
 
 if 'app' == '__main__':
     app.run()
