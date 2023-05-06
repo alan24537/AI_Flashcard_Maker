@@ -2,7 +2,7 @@ const flashcards = document.getElementsByClassName("flashcards")[0];
 const createCard = document.getElementsByClassName("create-card")[0];
 // let contentArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
-// contentArray.forEach(divMaker);
+// // contentArray.forEach(divMaker);
 
 // function divMaker(text) {
 //     var div = document.createElement("div");
@@ -44,11 +44,16 @@ function addFlashcard() {
         'my_topic': topic.value,
         'NumofCards': NumofCards.value
     }
+
     console.log(flashcard_info);
 
     grade.value = '';
     topic.value = '';
     NumofCards.value = '';
+}
+
+function createFlashcard(cards) {
+
 }
 
 // function delFlashcards() {
@@ -64,35 +69,35 @@ function addFlashcard() {
 
 $(document).ready(function() {
 			$("#generate").click(function() {
-				var grade = $("#grade").val();
-				$.ajax({
-					url: "/ajax_example",
-					type: "POST",
-					data: {grade: grade},
-					success: function(result) {
-						$("#result_grade").html(result.message);
-					}
-				});
+                var grade = $("#grade").val();
+                $.ajax({
+                    url: "/ajax_example",
+                    type: "POST",
+                    data: {grade: grade},
+                    success: function(result) {
+                        $("#result_grade").html(result.message);
+                    }
+                });
 
-        var topic = $("#topic").val();
-				$.ajax({
-					url: "/ajax_example",
-					type: "POST",
-					data: {topic: topic},
-					success: function(result) {
-						$("#result_topic").html(result.message);
-					}
-				});
+                var topic = $("#topic").val();
+                $.ajax({
+                    url: "/ajax_example",
+                    type: "POST",
+                    data: {topic: topic},
+                    success: function(result) {
+                        $("#result_topic").html(result.message);
+                    }
+                });
 
-        var topic = $("#NumofCards").val();
-				$.ajax({
-					url: "/ajax_example",
-					type: "POST",
-					data: {NumofCards: NumofCards},
-					success: function(result) {
-						$("#result_NumofCards").html(result.message);
-					}
-				});
-        
+                var topic = $("#NumofCards").val();
+                $.ajax({
+                    url: "/ajax_example",
+                    type: "POST",
+                    data: {NumofCards: NumofCards},
+                    success: function(result) {
+                        $("#result_NumofCards").html(result.message);
+                    }
+                });
+
 			});
 		});

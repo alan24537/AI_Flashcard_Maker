@@ -30,5 +30,3 @@ def generate_flashcards(number_of_cards, subject, grade):
     cards = conversion(response.choices[0].text,number_of_cards)
     
     return cards
-    
-generate_flashcards(10, "imaginary", "grade 11")

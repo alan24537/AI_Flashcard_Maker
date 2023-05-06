@@ -29,6 +29,8 @@ def addFlashcard():
     topic = request.form['topic']
     NumofCards = request.form['NumofCards']
     
+    print(grade, topic, NumofCards)
+    
     return generate_flashcards(NumofCards, topic, grade)
 
 if 'app' == '__main__':
