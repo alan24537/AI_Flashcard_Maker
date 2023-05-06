@@ -1,11 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>AI Flashcard Maker</title>
+  <!------------------------------------------------------
+    ----------------------JS--------------------------------
+    ------------------------------------------------------->
+  <script>
+    const flashcards = document.getElementsByClassName("flashcards")[0];
+    const createCard = document.getElementsByClassName("create-card")[0];
+    const grade = document.getElementById("grade");
+    const topic = document.getElementById("topic");
+    const NumofCards = document.getElementById("NumofCards");
+    let contentArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
-    
-    <style>
-        html {
+    contentArray.forEach(divMaker);
+
+    function divMaker(text) {
+      var div = document.createElement("div");
+      var h2_grade = document.createElement('h2');
+      var h2_topic = document.createElement('h2');
+      var h2_NumofCards = document.createElement('h2');
+
+      div.className = 'flashcard';
+
+      h2_grade.setAttribute("style", "border-top:1px solid red; padding: 15px; margin-top:30px");
+      h2_grade.innerHTML = text.my_grade;
+
+      h2_topic.setAttribute("style", "text-align:center; display:none; color:red");
+      h2_topic.innerHTML = text.my_topic;
+
+      h2_NumofCards.setAttribute("style", "text-align:center; display:none; color:red");
+      h2_NumofCards.innerHTML = text.my_NumofCards;
+
+      div.appendChild(h2_grade);
+      div.appendChild(h2_topic);
+      div.appendChild(h2_NumofCards);
+
+      div.addEventListener("click", function () {
+        if (h2_topic.style.display == "none")
+          h2_topic.style.display = "block";
+        else
+          h2_topic.style.display = "none";
+      })
+
+      flashcards.appendChild(div);
+    }
+
+    function addFlashcard() {
+      var flashcard_info = {
+        'my_grade': grade.value,
+        'my_topic': topic.value,
+        'NumofCards': NumofCards.value
+      }
+
+      contentArray.push(flashcard_info);
+      localStorage.setItem('items', JSON.stringify(contentArray));
+      divMaker(contentArray[contentArray.length - 1]);
+      grade.value = '';
+      topic.value = '';
+      NumofCards.value = '';
+    }
+
+    function delFlashcards() {
+      localStorage.clear();
+      flashcards.innerHTML = '';
+      contentArray = [];
+    }
+
+    function showCreateCardBox() {
+      createCard.style.display = "block";
+    }
+  </script>
+  <!--------------------------------------------------------------------------
+----------------------------------------------------------------------------
+--------------------------------------------------------------------------->
+  <!------------------------------------------------------
+    ----------------------CSS--------------------------------
+    ------------------------------------------------------->
+  <style>
+html {
   background-color: #202124
 }
 
@@ -29,112 +105,167 @@ p{
 	font-family: 'Monaco', monospace;
 	font-size:1.5rem;
   color: #7A9E7E;
-}    
-    </style>
-
-
-<script>
-const flashcards = document.getElementsByClassName("flashcards")[0];
-const createCard = document.getElementsByClassName("create-card")[0];
-const question = document.getElementById("question");
-const answer = document.getElementById("answer");
-let contentArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-
-contentArray.forEach(divMaker);
-
-function divMaker(text){
-  var div = document.createElement("div");
-  var h2_question = document.createElement('h2');
-  var h2_answer = document.createElement('h2');
-
-  div.className = 'flashcard';
-
-  h2_question.setAttribute("style", "border-top:1px solid red; padding: 15px; margin-top:30px");
-  h2_question.innerHTML = text.my_question;
-
-  h2_answer.setAttribute("style", "text-align:center; display:none; color:red");
-  h2_answer.innerHTML = text.my_answer;
-
-  div.appendChild(h2_question);
-  div.appendChild(h2_answer);
-
-  div.addEventListener("click", function(){
-    if(h2_answer.style.display == "none")
-      h2_answer.style.display = "block";
-    else
-      h2_answer.style.display = "none";
-  })
-
-  flashcards.appendChild(div);
 }
 
-function addFlashcard(){
-  var flashcard_info = {
-    'my_question' : question.value,
-    'my_answer'  : answer.value
+    
+/*---------------------------------------
+    flashcards
+-----------------------------------------*/
+button{
+  padding: 8px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background: whitesmoke;
+}
+
+button:hover{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container{
+  width: 95%;
+  margin: auto;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+	align-items: center;
+  justify-content: center;
+	text-align:center;
+  padding: 20px 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+}
+
+.nav button{
+  font-family: inherit;
+  color: #819891;
+  background-color: #D8D0CD;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+}
+
+.create-card{
+  width: 380px;
+  margin:auto;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-family: 'Nunito', sans-serif;
+  color: #D8D0CD;
+  font-size: 1rem;
+  background: whitesmoke;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.create-card textarea{
+  width: 100%;
+  border-radius: 5px;
+  font-family: inherit;
+  border: 1px solid lightgray;
+}
+
+.create-card button{
+  width: fit-content;
+}
+
+.flashcards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 0px 10px;
+}
+
+.flashcard{
+  width: 370px;
+  height: 200px;
+  word-wrap: break-word;
+  margin: 10px; 
+  background:#fff;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.flashcard h2{
+  font-size: 1rem;
+}
+
+@media(max-width:768px){
+  .flashcard{
+    margin: auto;
   }
 
-  contentArray.push(flashcard_info);
-  localStorage.setItem('items', JSON.stringify(contentArray));
-  divMaker(contentArray[contentArray.length - 1]);
-  question.value = '';
-  answer.value = '';
+  .flashcard{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
-function delFlashcards(){
-  localStorage.clear();
-  flashcards.innerHTML = '';
-  contentArray = [];
-}
+@media(max-width:480px){
+  .nav{
+    flex-direction: column;
+    align-items: center;
+  }
 
-function showCreateCardBox(){
-  createCard.style.display = "block";
-}
+  .create-card{
+    width: 100%;
+  }
 
-function hideCreateCardBox(){
-  createCard.style.display = "none";
-}
-</script>
+  .flashcard{
+    width: 100%;
+  }
 
+} 
+  </style>
+  <!--------------------------------------------------------------------------
+----------------------------------------------------------------------------
+--------------------------------------------------------------------------->
+</head>
 
+<body>
+  <main>
+    <h3>AI Flashcard Maker</h3>
+    <p>Studying!!</p>
 
-
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width">
-      <title>AI Flashcard Maker</title>
-      <link href="style.css" rel="stylesheet" type="text/css" />
-      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  </head>
-<body>	
-	<main>
-		  <h3>AI Flashcard Maker</h3>
-       <p>Studying!!</p>
-	</main>
-</body>
-</html>
-
-
-
-<!--
-    FLASHCARDS
-    -->
-<div id="Flash Cards"> 
+      <div id="Flash Cards"> 
+          <div class="container">
+      <div class="nav">
         <div>
-          <button onclick="showCreateCardBox()">New Card</button>
-          <button onclick="delFlashcards()">Del Cards</button>
+          <button onclick="showCreateCardBox()">New Cards</button>
+          <button onclick="delFlashcards()">Clear Cards</button>
         </div>
+      </div> 
+    </div>
      <div class="container">
     <div class="create-card">
-      <h2 Create Flashcard</h2>
+      <h2>Create Flashcard</h2>
 
-      <label for="question">Question</label>
-      <textarea id="question"></textarea>
-      <label for="answer">Answer</label>
-      <textarea id="answer"></textarea>
+      <label for="grade">Grade</label>
+      <textarea id="grade"></textarea>
+      <label for="topic">Topic</label>
+      <textarea id="topic"></textarea>
+      <label for="NumofCards">Number of Cards</label>
+      <textarea id="NumofCards"></textarea>
       <div>
-        <button onclick="addFlashcard()">Save</button> 
-        <button onclick="hideCreateCardBox()">Close</button>
+        <button onclick="addFlashcard()">Generate</button> 
       </div>
     </div>
     <div class="flashcards"></div>
   </div>
+
+
+    
+  </main>
+</body>
+
+</html>
