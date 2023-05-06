@@ -68,36 +68,47 @@ function createFlashcard(cards) {
 
 
 $(document).ready(function() {
-			$("#generate").click(function() {
-                var grade = $("#grade").val();
-                $.ajax({
-                    url: "/ajax_example",
-                    type: "POST",
-                    data: {grade: grade},
-                    success: function(result) {
-                        $("#result_grade").html(result.message);
-                    }
-                });
-
-                var topic = $("#topic").val();
-                $.ajax({
-                    url: "/ajax_example",
-                    type: "POST",
-                    data: {topic: topic},
-                    success: function(result) {
-                        $("#result_topic").html(result.message);
-                    }
-                });
-
-                var topic = $("#NumofCards").val();
-                $.ajax({
-                    url: "/ajax_example",
-                    type: "POST",
-                    data: {NumofCards: NumofCards},
-                    success: function(result) {
-                        $("#result_NumofCards").html(result.message);
-                    }
-                });
-
-			});
-		});
+    $("#submit_btn").click(function() {
+        var grade = $("#grade_input").val();
+        $.ajax({
+            url: "/ajax_grade",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({grade: grade}),
+            success: function(result) {
+                console.log(result);
+            }
+        });
+        
+    });
+});
+$(document).ready(function() {
+  $("#submit_btn").click(function() {
+      var topic = $("#topic_input").val();
+      $.ajax({
+          url: "/ajax_topic",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({topic: topic}),
+          success: function(result) {
+              console.log(result);
+          }
+      });
+      
+  });
+});
+$(document).ready(function() {
+    $("#submit_btn").click(function() {
+        var NumofCards = $("#NumofCards_input").val();
+        $.ajax({
+            url: "/ajax_NumofCards",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({NumofCards: NumofCards}),
+            success: function(result) {
+                console.log(result);
+            }
+        });
+        
+    });
+  });
