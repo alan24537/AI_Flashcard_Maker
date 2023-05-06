@@ -60,3 +60,39 @@ function addFlashcard() {
 // function showCreateCardBox() {
 //     createCard.style.display = "block";
 // }
+
+
+$(document).ready(function() {
+			$("#generate").click(function() {
+				var grade = $("#grade").val();
+				$.ajax({
+					url: "/ajax_example",
+					type: "POST",
+					data: {grade: grade},
+					success: function(result) {
+						$("#result_grade").html(result.message);
+					}
+				});
+
+        var topic = $("#topic").val();
+				$.ajax({
+					url: "/ajax_example",
+					type: "POST",
+					data: {topic: topic},
+					success: function(result) {
+						$("#result_topic").html(result.message);
+					}
+				});
+
+        var topic = $("#NumofCards").val();
+				$.ajax({
+					url: "/ajax_example",
+					type: "POST",
+					data: {NumofCards: NumofCards},
+					success: function(result) {
+						$("#result_NumofCards").html(result.message);
+					}
+				});
+        
+			});
+		});
