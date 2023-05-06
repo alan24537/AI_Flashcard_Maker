@@ -46,10 +46,6 @@ function addFlashcard() {
     }
 
     console.log(flashcard_info);
-
-    grade.value = '';
-    topic.value = '';
-    NumofCards.value = '';
 }
 
 function createFlashcard(cards) {
@@ -68,8 +64,8 @@ function createFlashcard(cards) {
 
 
 $(document).ready(function() {
-    $("#submit_btn").click(function() {
-        var grade = $("#grade_input").val();
+    $("#generate").click(function() {
+        var grade = $("#grade").val();
         $.ajax({
             url: "/ajax_grade",
             type: "POST",
@@ -83,8 +79,8 @@ $(document).ready(function() {
     });
 });
 $(document).ready(function() {
-  $("#submit_btn").click(function() {
-      var topic = $("#topic_input").val();
+  $("#generate").click(function() {
+      var topic = $("#topic").val();
       $.ajax({
           url: "/ajax_topic",
           type: "POST",
@@ -98,17 +94,30 @@ $(document).ready(function() {
   });
 });
 $(document).ready(function() {
-    $("#submit_btn").click(function() {
-        var NumofCards = $("#NumofCards_input").val();
+    $("#generate").click(function() {
+        var NumofCards = $("#NumofCards").val();
         $.ajax({
             url: "/ajax_NumofCards",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({NumofCards: NumofCards}),
             success: function(result) {
-                console.log(result);
+                console.log(result);    
             }
         });
         
+    });
+  });
+  $(document).ready(function() {
+    $("#generate").click(function() {
+        $.ajax({
+            url: "/ajax_get_cards",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({}),
+            success: function(result) {
+                console.log(result);    
+            }
+        }); 
     });
   });
