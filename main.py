@@ -51,6 +51,13 @@ def ajax_get_numOfCards():
     data_list.append(NumofCards)
     return NumofCards
 
+@app.route('/ajax_details', methods=['POST'])
+def ajax_get_details():
+    data = request.get_json()
+    details = data['details']
+    data_list.append(details)
+    return details
+
 @app.route('/ajax_get_cards', methods=['POST'])
 def ajax_send_cards():
     print(data_list)

@@ -39,6 +39,7 @@ function addFlashcard() {
     const grade = document.getElementById("grade");
     const topic = document.getElementById("topic");
     const NumofCards = document.getElementById("NumofCards");
+    const details = document.getElementById("details");
     var flashcard_info = {
         'my_grade': grade.value,
         'my_topic': topic.value,
@@ -132,6 +133,21 @@ $(document).ready(function() {
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({NumofCards: NumofCards}),
+            success: function(result) {
+                console.log(result);    
+            }
+        });
+        
+    });
+  });
+  $(document).ready(function() {
+    $("#generate").click(function() {
+        var NumofCards = $("#details").val();
+        $.ajax({
+            url: "/ajax_details",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({details: details}),
             success: function(result) {
                 console.log(result);    
             }
