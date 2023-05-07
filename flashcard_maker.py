@@ -29,14 +29,12 @@ def generate_flashcards(data):
     if desc == "":
         prompt = f"""
         Make {number_of_cards} flashcard questions and answers for grade {grade} {subject}. 
-        It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers. 
-        Make sure to use \\n to create a new line instead of \\r.
+        It must follow the format of Question: (actual question) line break; Answer: (actual answer) line break then repeat for the next set of questions and answers. 
         """
     else:
         prompt = f"""
         Make {number_of_cards} flashcard questions and answers for grade {grade} {subject}. 
-        It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers.
-        Make sure to use \\n to create a new line instead of \\r.
+        It must follow the format of Question: (actual question) line break; Answer: (actual answer) line break then repeat for the next set of questions and answers. 
         Extra Details: {desc}
         """
 
@@ -64,8 +62,7 @@ def generate_flashcards_with_note(data):
     
     prompt = f"""
     Using the following note (which is a .{file_ex} file), generate {number_of_cards} flashcard questions and answers.
-    It must follow the format of Question: (actual question) \\n Answer: (actual answer) \\n\\n the repeat for the next set of questions and answers.
-    Make sure to use \\n to create a new line instead of \\r.
+    It must follow the format of Question: (actual question) line break; Answer: (actual answer) line break then repeat for the next set of questions and answers. 
     Note: {note}
     """
     

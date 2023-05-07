@@ -8,6 +8,6 @@ You can either provide a topic and grade level, a description of the topic, or y
 
 <!-- add a checklist-->
 - [x] get the notes files thing to work
-- [ ] loading screen while gpt is cookin
+- [x] loading screen while gpt is cookin
 - [ ] add a way to download the flashcards (maybe)
 - [ ] deploy the website

@@ -293,9 +293,6 @@ display: block;
 }
 
 .loading_gif {
-  width: 7%;
-  height: 7%;
-  margin: 0px;
-  padding: 0px;
-  border: 1px solid #0031f3;
+  width: 0%;
+  height: 0%;
 }
