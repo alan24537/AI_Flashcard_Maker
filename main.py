@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, Response
 from flashcard_maker import generate_flashcards, generate_flashcards_with_note
 import genanki
 import openai
-openai.api_key  = ('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')
+openai.api_key  = "" # key is deleted for security reasons
 arr =[]
 
 #Set up website with index.html
