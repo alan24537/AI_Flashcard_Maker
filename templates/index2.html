@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="{{url_for('static', filename='script.js')}}"></script>
+  <script src="{{url_for('static', filename='script2.js')}}"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
   <title>AI Flashcard Maker 2.0</title>
   </head>
@@ -33,7 +33,6 @@
           <div class="container">
       <div class="nav">
         <div>
-          <button onclick="showCreateCardBox()">New Cards</button>
           <button onclick="delFlashcards()">Clear Cards</button>
         </div>
       </div> 
@@ -43,7 +42,7 @@
       <h2>Create Flashcard</h2>
 
       <label for="note">Note</label>
-      <input type="file" name="note" accept=".txt,.md" multiple="false"><br><br>
+      <input type="file" id="note" name="note" accept=".txt,.md" multiple="false"><br><br>
       <div id="result_grade"></div>
 
       <label for="NumofCards">Number of Cards</label>
@@ -51,7 +50,7 @@
       <div id="result_NumofCards"></div>
 
       <div>
-        <button onclick="addFlashcard()" id="generate">Generate</button> 
+        <button id="generate">Generate</button> 
       </div>
     </div>
     <div id="flashcards-container"></div>

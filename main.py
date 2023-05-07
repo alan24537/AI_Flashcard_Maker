@@ -20,6 +20,7 @@ openai.api_key  = ('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')
 app = Flask(__name__)
 
 data_list = []
+note_data = []
 
 @app.route('/')
 def render_home():
@@ -65,6 +66,20 @@ def ajax_send_cards():
     cards = generate_flashcards(data_list)
     data_list.clear()
     return jsonify(cards)
+     
+     
+@app.route('/note/ajax_note', methods=['POST'])
+def ajax_get_note():
+    data = request.get_json()
+    note = data['note']
+    note_data.append(["note", note])
+    NumofCards = data['NumofCards']
+    note_data.append(["NumofCards", NumofCards])
+    ex = data['ex']
+    note_data.append(["ex", ex])
+    
+    return generate_flashcards_with_note([note, ex, NumofCards])
+
      
 if 'app' == '__main__':
     app.run()
