@@ -7,7 +7,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{url_for('static', filename='script.js')}}"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
-  <title>AI Flashcard Maker</title>
+  <title>AI Flashcard Maker 2.0</title>
   </head>
 
 
@@ -15,8 +15,8 @@
 <header>
   <nav>	
    <ul class="nav-bar"><div class="bg"></div>
-    <li><a class="nav-link active" href="index.html">1.0</a></li>
-    <li><a class="nav-link" href="index2.html">2.0</a></li>
+    <li><a class="nav-link" href="index.html">1.0</a></li>
+    <li><a class="nav-link active" href="index2.html">2.0</a></li>
     <div class="e">
       <div class="line1"></div>
           <div class="line2"></div>
@@ -31,8 +31,8 @@
 
 <body>
   <main>
-    <h3>AI Flashcard Maker</h3>
-    <p>Studying!!</p>
+    <h3>AI Flashcard Maker 2.0</h3>
+    <p>Better</p>
       <div id="Flash Cards"> 
           <div class="container">
       <div class="nav">
@@ -57,6 +57,11 @@
       <label for="NumofCards">Number of Cards</label>
       <input type="text" id="NumofCards"><br><br>
       <div id="result_NumofCards"></div>
+
+      <label for="Details">Details</label>
+      <input type="text" id="Details"><br><br>
+      <div id="result_Deat"></div>
+
       <div>
         <button onclick="addFlashcard()" id="generate">Generate</button> 
       </div>
