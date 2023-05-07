@@ -14,8 +14,6 @@ def __conversion(st,num):
             idx -= 1
         idx += 1
 
-    print(news)
-
     newnews = []
     for i in range(num):
         card = [news[i*2],news[i*2+1]]
