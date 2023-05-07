@@ -137,12 +137,11 @@ $(document).ready(function() {
                 console.log(result);    
             }
         });
-        
     });
-  });
-  $(document).ready(function() {
+});
+$(document).ready(function() {
     $("#generate").click(function() {
-        var NumofCards = $("#details").val();
+        var details = $("#details").val();
         $.ajax({
             url: "/ajax_details",
             type: "POST",
@@ -154,8 +153,8 @@ $(document).ready(function() {
         });
         
     });
-  });
-  $(document).ready(function() {
+});
+$(document).ready(function() {
     $("#generate").click(function() {
         $.ajax({
             url: "/ajax_get_cards",
@@ -189,7 +188,7 @@ $(document).ready(function() {
             }
         }); 
     });
-  });
+});
 
 
 
