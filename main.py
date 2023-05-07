@@ -19,9 +19,6 @@ openai.api_key  = ('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')
 #Set up website with index.html
 app = Flask(__name__)
 
-data_list = []
-note_data = []
-
 @app.route('/')
 def render_home():
     return render_template('index.html')
@@ -31,52 +28,23 @@ def render_note():
     print("note")
     return render_template('index2.html')
 
-@app.route('/ajax_grade', methods=['POST'])
-def ajax_get_grade():
-    data = request.get_json()
-    grade = data['grade']
-    data_list.append(grade)
-    return grade
-    
-@app.route('/ajax_topic', methods=['POST'])
-def ajax_get_topic():
-    data = request.get_json()
-    topic = data['topic']
-    data_list.append(topic)
-    return topic
-    
-@app.route('/ajax_NumofCards', methods=['POST'])
-def ajax_get_numOfCards():
-    data = request.get_json()
-    NumofCards = data['NumofCards']
-    data_list.append(NumofCards)
-    return NumofCards
-
-@app.route('/ajax_details', methods=['POST'])
-def ajax_get_details():
-    data = request.get_json()
-    print(data)
-    details = data['details']
-    data_list.append(details)
-    return details
-
 @app.route('/ajax_get_cards', methods=['POST'])
 def ajax_send_cards():
-    print(data_list)
-    cards = generate_flashcards(data_list)
-    data_list.clear()
-    return jsonify(cards)
+    data = request.get_json()
+    grade = data['grade']
+    topic = data['topic']
+    NumofCards = data['NumofCards']
+    details = data['details']
+    
+    return generate_flashcards([grade, topic, NumofCards, details])
      
      
-@app.route('/note/ajax_note', methods=['POST'])
+@app.route('/note/ajax_create_cards', methods=['POST'])
 def ajax_get_note():
     data = request.get_json()
     note = data['note']
-    note_data.append(["note", note])
     NumofCards = data['NumofCards']
-    note_data.append(["NumofCards", NumofCards])
     ex = data['ex']
-    note_data.append(["ex", ex])
     
     return generate_flashcards_with_note([note, ex, NumofCards])
 

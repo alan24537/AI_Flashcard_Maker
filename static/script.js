@@ -95,72 +95,23 @@ function delFlashcards() {
 // }
 
 
+
 $(document).ready(function() {
     $("#generate").click(function() {
         var grade = $("#grade").val();
-        $.ajax({
-            url: "/ajax_grade",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({grade: grade}),
-            success: function(result) {
-                console.log(result);
-            }
-        });
-        
-    });
-});
-$(document).ready(function() {
-  $("#generate").click(function() {
-      var topic = $("#topic").val();
-      $.ajax({
-          url: "/ajax_topic",
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify({topic: topic}),
-          success: function(result) {
-              console.log(result);
-          }
-      });
-      
-  });
-});
-$(document).ready(function() {
-    $("#generate").click(function() {
+        var topic = $("#topic").val();
         var NumofCards = $("#NumofCards").val();
-        $.ajax({
-            url: "/ajax_NumofCards",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({NumofCards: NumofCards}),
-            success: function(result) {
-                console.log(result);    
-            }
-        });
-    });
-});
-$(document).ready(function() {
-    $("#generate").click(function() {
         var details = $("#details").val();
-        $.ajax({
-            url: "/ajax_details",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({details: details}),
-            success: function(result) {
-                console.log(result);    
-            }
-        });
-        
-    });
-});
-$(document).ready(function() {
-    $("#generate").click(function() {
         $.ajax({
             url: "/ajax_get_cards",
             type: "POST",
             contentType: "application/json",
-            data: JSON.stringify({}),
+            data: JSON.stringify({
+                grade: grade,
+                topic: topic,
+                NumofCards: NumofCards,
+                details: details
+            }),
             success: function(result) {
                 console.log(result); 
             

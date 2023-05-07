@@ -291,3 +291,8 @@ display: none;
 .flashcard.flipped .back {
 display: block;
 }
+
+.loading_gif {
+  width: 7%;
+  height: 7%;
+}

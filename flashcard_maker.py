@@ -28,7 +28,7 @@ def generate_flashcards(data):
     
     if desc == "":
         prompt = f"""
-        Make {number_of_cards} flashcard questions and answers for {grade} {subject}. 
+        Make {number_of_cards} flashcard questions and answers for grade {grade} {subject}. 
         It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers. 
         Make sure to use \\n to create a new line instead of \\r.
         """

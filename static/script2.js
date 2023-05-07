@@ -52,7 +52,7 @@ $(document).ready(function() {
         var ex = document.getElementById("note").files[0].name.split(".").pop();
         var NumofCards = $("#NumofCards").val();
         $.ajax({
-            url: "/note/ajax_note",
+            url: "/note/ajax_create_cards",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({
