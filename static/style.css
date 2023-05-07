@@ -4,8 +4,8 @@ html {
 :root{
 --main-background:#202124;
 --main-fonts-color: #8390FA;
---main-decor-color: #3f4147;
---main-header-background:#3f4147;
+--main-decor-color: #7A9E7E;
+--main-header-background:#4f5159;
 --main-font-family: 'Monaco', monospace;
 }
 main{
@@ -20,12 +20,12 @@ h3{
   font-family: 'Monaco', monospace;
   font-style: normal;
   font-size: 60px;
-  color: #8390FA;
+  color: var(--main-fonts-color);
 }
 p{
   font-family: 'Monaco', monospace;
   font-size:1.5rem;
-  color: #7A9E7E;
+  color: var(--main-decor-color);
 }
 
 *{
@@ -82,12 +82,12 @@ text-transform: uppercase;
 }
 
 .active{
-background: var(--main-decor-color);
+background: #303136;
 }
 
 .nav-link:hover {
 color: #D8D0CD;
-background: var(--main-decor-color);
+background: var(--main-header-background);
 }
 
 #app button {
@@ -275,16 +275,6 @@ font-family: 'Nunito', sans-serif;
 
 }
 
-.flashcard {
-width: 380px;
-padding: 20px;
-border-radius: 5px;
-font-size: 15px;
-text-align: center;
-color: #D8D0CD;
-font-family: 'Nunito', sans-serif;
-cursor: pointer;
-}
 .flashcard.flipped {
   color: #3f4147;
   background-color: #D8D0CD;
