@@ -34,6 +34,18 @@ const createCard = document.getElementsByClassName("create-card")[0];
 
 //     flashcards.appendChild(div);
 // }
+//LOADING SCREEN
+var loadingScreen = document.getElementById("loading-screen");
+
+function showLoadingScreen() {
+  loadingScreen.style.display = "block";
+}
+
+function hideLoadingScreen() {
+  loadingScreen.style.display = "none";
+}
+
+
 
 function addFlashcard() {
     const grade = document.getElementById("grade");
@@ -96,102 +108,99 @@ function delFlashcards() {
 
 
 $(document).ready(function() {
-    $("#generate").click(function() {
-        var grade = $("#grade").val();
-        $.ajax({
-            url: "/ajax_grade",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({grade: grade}),
-            success: function(result) {
-                console.log(result);
-            }
-        });
+$("#generate").click(function() {
+    var grade = $("#grade").val();
+    $.ajax({
+        url: "/ajax_grade",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({grade: grade}),
+        success: function(result) {
+            console.log(result);
+        }
+    });
+    
+});
+});
+$(document).ready(function() {
+$("#generate").click(function() {
+    var topic = $("#topic").val();
+    $.ajax({
+        url: "/ajax_topic",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({topic: topic}),
+        success: function(result) {
+            console.log(result);
+        }
+    });
+    
+});
+});
+$(document).ready(function() {
+$("#generate").click(function() {
+    var NumofCards = $("#NumofCards").val();
+    $.ajax({
+        url: "/ajax_NumofCards",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({NumofCards: NumofCards}),
+        success: function(result) {
+            console.log(result);    
+        }
+    });
+});
+});
+$(document).ready(function() {
+$("#generate").click(function() {
+    var details = $("#details").val();
+    $.ajax({
+        url: "/ajax_details",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({details: details}),
+        success: function(result) {
+            console.log(result);    
+        }
+    });
+    
+});
+});
+$(document).ready(function() {
+$("#generate").click(function() {
+    $.ajax({
+        url: "/ajax_get_cards",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({}),
+        success: function(result) {
+            console.log(result); 
         
-    });
-});
-$(document).ready(function() {
-  $("#generate").click(function() {
-      var topic = $("#topic").val();
-      $.ajax({
-          url: "/ajax_topic",
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify({topic: topic}),
-          success: function(result) {
-              console.log(result);
-          }
-      });
-      
-  });
-});
-$(document).ready(function() {
-    $("#generate").click(function() {
-        var NumofCards = $("#NumofCards").val();
-        $.ajax({
-            url: "/ajax_NumofCards",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({NumofCards: NumofCards}),
-            success: function(result) {
-                console.log(result);    
-            }
-        });
-    });
-});
-$(document).ready(function() {
-    $("#generate").click(function() {
-        var details = $("#details").val();
-        $.ajax({
-            url: "/ajax_details",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({details: details}),
-            success: function(result) {
-                console.log(result);    
-            }
-        });
-        
-    });
-});
-$(document).ready(function() {
-    $("#generate").click(function() {
-        $.ajax({
-            url: "/ajax_get_cards",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({}),
-            success: function(result) {
-                console.log(result); 
-            
-                const flashcards = createFlashcards(result);
+            const flashcards = createFlashcards(result);
 
-                const flashcardsContainer = document.getElementById('flashcards-container');
+            const flashcardsContainer = document.getElementById('flashcards-container');
 
-                flashcards.forEach(flashcard => {
-                const cardElement = document.createElement('div');
-                cardElement.classList.add('flashcard');
-                cardElement.innerHTML = `
-                    <div class="front">
-                    ${flashcard.question}
-                    </div>
-                    <div class="back">
-                    ${flashcard.answer}
-                    </div>
-                `;
-                cardElement.addEventListener('click', () => {
-                    cardElement.classList.toggle('flipped');
-                    flashcard.flipped = !flashcard.flipped;
-                });
-                flashcardsContainer.appendChild(cardElement);
-                });
-            }
-        }); 
-    });
+            flashcards.forEach(flashcard => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('flashcard');
+            cardElement.innerHTML = `
+                <div class="front">
+                ${flashcard.question}
+                </div>
+                <div class="back">
+                ${flashcard.answer}
+                </div>
+            `;
+            cardElement.addEventListener('click', () => {
+                cardElement.classList.toggle('flipped');
+                flashcard.flipped = !flashcard.flipped;
+            });
+            flashcardsContainer.appendChild(cardElement);
+            });
+        }
+    }); 
 });
-
-
-
+});
 
 
 
@@ -219,3 +228,5 @@ $(document).ready(function() {
    }
 
 window.onload = () => navSlide();
+
+
