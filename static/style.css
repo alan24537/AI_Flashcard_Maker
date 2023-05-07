@@ -233,7 +233,6 @@ width: fit-content;
 
 .flashcard{
   width: 380px;
-  margin:auto;
   padding: 20px;
   margin-top: 10px;
   border-radius: 5px;
@@ -279,7 +278,6 @@ font-family: 'Nunito', sans-serif;
 .flashcard {
 width: 380px;
 padding: 20px;
-margin: 20px;
 border-radius: 5px;
 font-size: 15px;
 text-align: center;
