@@ -1,20 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, Response
 from flashcard_maker import generate_flashcards, generate_flashcards_with_note
-import re
-import random
-
-# import subprocess
-
-# Define the package you want to install
-# package = 'openai'
-
-# # Run the pip install command using subprocess
-# subprocess.call(['pip', 'install', package])
-
+import genanki
 import openai
-import os
 openai.api_key  = ('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')
-
+arr =[]
 
 #Set up website with index.html
 app = Flask(__name__)
@@ -45,8 +34,79 @@ def ajax_get_note():
     note = data['note']
     NumofCards = data['NumofCards']
     ex = data['ex']
+    arr=generate_flashcards_with_note([note, ex, NumofCards])
+    return arr
+
+#DOWNLOAD
+@app.route('/download-deck')
+def download_deck():
+    questions=[]
+    answers=[]
+    for i in range (0, arr.len()):
+        questions.append(arr[i])
+        answers.append(arr[i])
+
+    # create an Anki deck
+    model = genanki.Model(
+        1607392319,
+        'Simple Model',
+        fields=[{'name': 'Question'}, {'name': 'Answer'}],
+        templates=[{
+            'name': 'Card 1',
+            'qfmt': '{{Question}}',
+            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',
+        }]
+    )
+
+if 'app' == '__main__':
+    app.run()
+
+app.run(host='0.0.0.0', port=8080, debug=True)
+
+#DOWNLOAD
+@app.route('/download-deck')
+def download_deck():
+    questions=[]
+    answers=[]
+    for i in range (0, arr.len()):
+        questions.append(arr[i])
+        answers.append(arr[i])
+
+    # create an Anki deck
+    model = genanki.Model(
+        1607392319,
+        'Simple Model',
+        fields=[{'name': 'Question'}, {'name': 'Answer'}],
+        templates=[{
+            'name': 'Card 1',
+            'qfmt': '{{Question}}',
+            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',
+        }]
+    )
+    deck = genanki.Deck(
+        2059400110,
+        'Example Deck'
+    )
     
-    return generate_flashcards_with_note([note, ex, NumofCards])
+    for i in range(len(questions)):
+        note = genanki.Note(
+            model=model,
+            fields=[questions[i], answers[i]]
+        )
+        deck.add_note(note)
+
+    # return the deck as a file
+    deck_bytes = deck.write_to_bytes()
+    return Response(
+        deck_bytes,
+        mimetype='application/octet-stream',
+        headers={
+            'Content-Disposition': 'attachment; filename=example_deck.apkg'
+        }
+    )
+
+
+
 
      
 if 'app' == '__main__':
