@@ -1,9 +1,20 @@
 import openai
+import pprint
 openai.api_key = "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"
 
 def __conversion(st,num):
     st = st.split("\n")
     news = list(filter(None, st))
+
+    idx = 0
+    while idx < len(news):
+        news[idx] = news[idx].strip('\r')
+        if news[idx] == "":
+            news.pop(idx)
+            idx -= 1
+        idx += 1
+
+    print(news)
 
     newnews = []
     for i in range(num):
@@ -20,12 +31,14 @@ def generate_flashcards(data):
     if desc == "":
         prompt = f"""
         Make {number_of_cards} flashcard questions and answers for {grade} {subject}. 
-        It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers.
+        It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers. 
+        Make sure to use \\n to create a new line instead of \\r.
         """
     else:
         prompt = f"""
         Make {number_of_cards} flashcard questions and answers for grade {grade} {subject}. 
         It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers.
+        Make sure to use \\n to create a new line instead of \\r.
         Extra Details: {desc}
         """
 
@@ -35,7 +48,7 @@ def generate_flashcards(data):
         max_tokens=600,
         n=1,
         stop=None,
-        temperature=0.7,
+        temperature=0.3,
     )
     print("________________")
     print(response.choices[0].text)
@@ -54,6 +67,7 @@ def generate_flashcards_with_note(data):
     prompt = f"""
     Using the following note (which is a .{file_ex} file), generate {number_of_cards} flashcard questions and answers.
     It must follow the format of Question: (actual question) \\n Answer: (actual answer) \\n\\n the repeat for the next set of questions and answers.
+    Make sure to use \\n to create a new line instead of \\r.
     Note: {note}
     """
     
@@ -63,7 +77,7 @@ def generate_flashcards_with_note(data):
         max_tokens=600,
         n=1,
         stop=None,
-        temperature=0.7,
+        temperature=0.3,
     )
     print("________________")
     print(response.choices[0].text)
