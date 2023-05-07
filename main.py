@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from flashcard_maker import generate_flashcards, generate_flashcard_with_description, generate_flashcards_with_note, generate_flashcards_with_mdnote
+from flashcard_maker import generate_flashcards, generate_flashcard_with_description, generate_flashcards_with_note
 import re
 import random
 
