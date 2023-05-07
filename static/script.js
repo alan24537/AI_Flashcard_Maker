@@ -102,6 +102,8 @@ $(document).ready(function() {
         var topic = $("#topic").val();
         var NumofCards = $("#NumofCards").val();
         var details = $("#details").val();
+        document.getElementById("loading_circle").style.width = "7%";
+        document.getElementById("loading_circle").style.height = "7%";
         $.ajax({
             url: "/ajax_get_cards",
             type: "POST",
@@ -114,7 +116,10 @@ $(document).ready(function() {
             }),
             success: function(result) {
                 console.log(result); 
-            
+                
+                document.getElementById("loading_circle").style.width = "0%";
+                document.getElementById("loading_circle").style.height = "0%";
+
                 const flashcards = createFlashcards(result);
 
                 const flashcardsContainer = document.getElementById('flashcards-container');

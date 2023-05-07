@@ -51,6 +51,8 @@ $(document).ready(function() {
         var note = await fileToText(document.getElementById("note").files[0]);
         var ex = document.getElementById("note").files[0].name.split(".").pop();
         var NumofCards = $("#NumofCards").val();
+        document.getElementById("loading_circle").style.width = "7%";
+        document.getElementById("loading_circle").style.height = "7%";
         $.ajax({
             url: "/note/ajax_create_cards",
             type: "POST",
@@ -62,6 +64,9 @@ $(document).ready(function() {
             success: function(result) {
                 console.log(result); 
             
+                document.getElementById("loading_circle").style.width = "0%";
+                document.getElementById("loading_circle").style.height = "0%";
+
                 const flashcards = createFlashcards(result);
 
                 const flashcardsContainer = document.getElementById('flashcards-container');
