@@ -15,8 +15,8 @@
 <header>
   <nav>	
    <ul class="nav-bar"><div class="bg"></div>
-    <li><a class="nav-link" href="index.html">1.0</a></li>
-    <li><a class="nav-link active" href="index2.html">2.0</a></li>
+    <li><a class="nav-link" href="/">1.0</a></li>
+    <li><a class="nav-link active" href="/note">2.0</a></li>
     <div class="e">
       <div class="line1"></div>
           <div class="line2"></div>
@@ -24,10 +24,6 @@
     </div>
   </nav>
 </header>
-
-
-
-
 
 <body>
   <main>
@@ -46,21 +42,13 @@
     <div class="create-card">
       <h2>Create Flashcard</h2>
 
-      <label for="grade">Grade</label>
-      <input type="text" id="grade" ><br><br>
+      <label for="note">Note</label>
+      <input type="file" name="note" accept=".txt,.md" multiple="false"><br><br>
       <div id="result_grade"></div>
-
-      <label for="topic">Topic</label>
-      <input type="text" id="topic"><br><br>
-      <div id="result_topic"></div>
 
       <label for="NumofCards">Number of Cards</label>
       <input type="text" id="NumofCards"><br><br>
       <div id="result_NumofCards"></div>
-
-      <label for="Details">Details</label>
-      <input type="text" id="Details"><br><br>
-      <div id="result_Deat"></div>
 
       <div>
         <button onclick="addFlashcard()" id="generate">Generate</button> 
@@ -68,9 +56,7 @@
     </div>
     <div id="flashcards-container"></div>
   </div>
-
-
-    
+ 
   </main>
 </body>
 
