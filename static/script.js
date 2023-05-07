@@ -81,11 +81,13 @@ function createFlashcards(raw_fcs) {
     return flashcards;
   }
 
-// function delFlashcards() {
-//     localStorage.clear();
-//     flashcards.innerHTML = '';
-//     contentArray = [];
-// }
+function delFlashcards() {
+    const flashcardsContainer = document.getElementById('flashcards-container');
+    // Clear the div
+    while (flashcardsContainer.firstChild) {
+        flashcardsContainer.removeChild(flashcardsContainer.firstChild);
+    }
+}
 
 // function showCreateCardBox() {
 //     createCard.style.display = "block";
@@ -150,8 +152,6 @@ $(document).ready(function() {
                 const flashcards = createFlashcards(result);
 
                 const flashcardsContainer = document.getElementById('flashcards-container');
-                console.log(flashcardsContainer);
-
 
                 flashcards.forEach(flashcard => {
                 const cardElement = document.createElement('div');
