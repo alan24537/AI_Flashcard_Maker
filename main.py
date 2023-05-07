@@ -22,8 +22,13 @@ app = Flask(__name__)
 data_list = []
 
 @app.route('/')
-def hello_world():
+def render_home():
     return render_template('index.html')
+
+@app.route('/note')
+def render_note():
+    print("note")
+    return render_template('index2.html')
 
 @app.route('/ajax_grade', methods=['POST'])
 def ajax_get_grade():
