@@ -16,8 +16,8 @@ main{
 }
 
 h3{
-letter-spacing: normal;
-font-family: 'Monaco', monospace;
+  letter-spacing: normal;
+  font-family: 'Monaco', monospace;
   font-style: normal;
   font-size: 60px;
   color: #8390FA;
@@ -25,7 +25,7 @@ font-family: 'Monaco', monospace;
 p{
   font-family: 'Monaco', monospace;
   font-size:1.5rem;
-color: #7A9E7E;
+  color: #7A9E7E;
 }
 
 *{
@@ -86,7 +86,7 @@ background: var(--main-decor-color);
 }
 
 .nav-link:hover {
-color: #000000;
+color: #D8D0CD;
 background: var(--main-decor-color);
 }
 
@@ -158,13 +158,15 @@ button{
 padding: 8px;
 outline: none;
 cursor: pointer;
-border: 1px solid lightgray;
+color: #D8D0CD;
+border: 1px solid #595b63;
 border-radius: 5px;
-background: whitesmoke;
+background: #3f4147;
 }
 
 button:hover{
-background-color: rgba(0, 0, 0, 0.1);
+  color: #D8D0CD;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .container{
@@ -188,9 +190,8 @@ font-size: 1rem;
 }
 
 .nav button{
-font-family: inherit;
 color: #819891;
-background-color: #D8D0CD;
+background-color: #3f4147;
 font-family: 'Nunito', sans-serif;
 font-size: 1rem;
 }
@@ -202,17 +203,16 @@ padding: 20px;
 margin-top: 10px;
 border-radius: 5px;
 font-family: 'Nunito', sans-serif;
-color: #D8D0CD;
 font-size: 1rem;
-background: whitesmoke;
-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+background: #3F4147;
+color: #D8D0CD;
 }
 
 .create-card textarea{
 width: 100%;
 border-radius: 5px;
-font-family: inherit;
-border: 1px solid lightgray;
+color: #D8D0CD;
+font-family: 'Nunito', sans-serif;
 }
 
 .create-card button{
@@ -220,27 +220,33 @@ width: fit-content;
 }
 
 .flashcards{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-width: 100%;
-margin: auto;
-margin-top: 10px;
-padding: 0px 10px;
+  width: 380px;
+  margin:auto;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  background: #3F4147;
+  color: #D8D0CD;
 }
 
 .flashcard{
-width: 370px;
-height: 200px;
-word-wrap: break-word;
-margin: 10px; 
-background:#fff;
-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  width: 380px;
+  margin:auto;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  background: #3F4147;
+  color: #D8D0CD;
 }
 
 .flashcard h2{
 font-size: 1rem;
+color: #D8D0CD;
+font-family: 'Nunito', sans-serif;
 }
 
 @media(max-width:768px){
@@ -271,17 +277,19 @@ font-size: 1rem;
 }
 
 .flashcard {
-width: 300px;
-height: 200px;
-border: 1px solid black;
+width: 380px;
 padding: 20px;
 margin: 20px;
-font-size: 24px;
+border-radius: 5px;
+font-size: 15px;
 text-align: center;
+color: #D8D0CD;
+font-family: 'Nunito', sans-serif;
 cursor: pointer;
 }
 .flashcard.flipped {
-background-color: #d3d3d3;
+  color: #3f4147;
+  background-color: #D8D0CD;
 }
 .flashcard .front {
 display: block;
