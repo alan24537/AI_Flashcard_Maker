@@ -1,4 +1,4 @@
-const flashcards = document.getElementsByClassName("flashcards")[0];
+// const flashcards = document.getElementsByClassName("flashcards")[0];
 const createCard = document.getElementsByClassName("create-card")[0];
 // let contentArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
@@ -51,6 +51,35 @@ function addFlashcard() {
 function createFlashcard(cards) {
 
 }
+
+function createFlashcards(raw_fcs) {
+    let questions = [];
+    let answers = [];
+    
+    for (let i = 0; i < raw_fcs.length; i ++) {
+        questions.push(raw_fcs[i][0]);
+    }
+    for (let i = 0; i < raw_fcs.length; i ++) {
+        answers.push(raw_fcs[i][1]);
+    }
+
+    const flashcards = [];
+
+    for (let i = 0; i < questions.length; i++) {
+      const question = questions[i];
+      const answer = answers[i];
+
+      const flashcard = {
+        question: question,
+        answer: answer,
+        flipped: false
+      };
+
+      flashcards.push(flashcard);
+    }
+
+    return flashcards;
+  }
 
 // function delFlashcards() {
 //     localStorage.clear();
@@ -116,7 +145,31 @@ $(document).ready(function() {
             contentType: "application/json",
             data: JSON.stringify({}),
             success: function(result) {
-                console.log(result);    
+                console.log(result); 
+            
+                const flashcards = createFlashcards(result);
+
+                const flashcardsContainer = document.getElementById('flashcards-container');
+                console.log(flashcardsContainer);
+
+
+                flashcards.forEach(flashcard => {
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('flashcard');
+                cardElement.innerHTML = `
+                    <div class="front">
+                    ${flashcard.question}
+                    </div>
+                    <div class="back">
+                    ${flashcard.answer}
+                    </div>
+                `;
+                cardElement.addEventListener('click', () => {
+                    cardElement.classList.toggle('flipped');
+                    flashcard.flipped = !flashcard.flipped;
+                });
+                flashcardsContainer.appendChild(cardElement);
+                });
             }
         }); 
     });

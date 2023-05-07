@@ -35,3 +35,79 @@ def generate_flashcards(data):
     
     cards = __conversion(response.choices[0].text,int(number_of_cards))
     return cards
+
+def generate_flashcard_with_description(data):
+    desc = data[0]
+    number_of_cards = data[1]
+    
+    prompt = f"""
+    Using the given description, generate {number_of_cards} flashcard questions and answers.
+    It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers.
+    Description: {desc}
+    """
+    
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=600,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+    print("________________")
+    print(response.choices[0].text)
+    print("________________")
+    
+    cards = __conversion(response.choices[0].text,int(number_of_cards))
+    return cards
+    
+
+def generate_flashcards_with_note(data):
+    note = data[0]
+    number_of_cards = data[1]
+    
+    prompt = f"""
+    Using the following note, generate {number_of_cards} flashcard questions and answers.
+    It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers.
+    Note: {note}
+    """
+    
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=600,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+    print("________________")
+    print(response.choices[0].text)
+    print("________________")
+    
+    cards = __conversion(response.choices[0].text,int(number_of_cards))
+    return cards
+
+def generate_flashcards_with_mdnote(data):
+    note = data[0]
+    number_of_cards = data[1]
+    
+    prompt = f"""
+    Using the following note in markdown, generate {number_of_cards} flashcard questions and answers.
+    It must follow the format of Question \\n Answer \\n\\n the repeat for the next set of questions and answers.
+    Note: {note}
+    """
+    
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=600,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+    print("________________")
+    print(response.choices[0].text)
+    print("________________")
+    
+    cards = __conversion(response.choices[0].text,int(number_of_cards))
+    return cards
