@@ -175,3 +175,18 @@ $(document).ready(function() {
    }
 
 window.onload = () => navSlide();
+
+//DOWNLOAD
+const downloadDeckButton = document.querySelector('#download');
+        downloadDeckButton.addEventListener('click', async () => {
+            const response = await fetch('/download-deck');
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'example_deck.apkg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        });
