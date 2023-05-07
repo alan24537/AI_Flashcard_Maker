@@ -1,7 +1,7 @@
 # AI_Flashcard_Maker
 
 Creates flashcards using the Chatgpt api.
-Flashcards can be used on our website [site](https://flashcardio.axeil.repl.co/)
+Flashcards can be used on our [website](https://flashcardio.axeil.repl.co/)
 
 ## Inspiration (❁´◡`❁)
 As high school students, we struggle to find a way to study efficiently and it is time-consuming to create flashcards every single time. 
