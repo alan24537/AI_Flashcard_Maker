@@ -1,6 +1,6 @@
 import openai
 import pprint
-openai.api_key = "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"
+openai.api_key = "" # oops ig i leaked that
 
 def __conversion(st,num):
     st = st.split("\n")
